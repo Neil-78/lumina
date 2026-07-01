@@ -1,4 +1,4 @@
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -27,9 +27,11 @@ html_content = """<!DOCTYPE html>
             background-color: var(--bg-color);
             color: var(--text-dark);
             line-height: 1.6;
+            /* Fondo sutilmente dinámico */
+            background-image: radial-gradient(circle at top right, #ffffff, #F8FBFB);
         }
 
-        /* Navegación sutil */
+        /* Navegación base (se mejora en PC) */
         nav {
             position: fixed;
             top: 0;
@@ -109,16 +111,14 @@ html_content = """<!DOCTYPE html>
         /* --- SECCIÓN 1: IDENTIDAD --- */
         .hero-section {
             text-align: center;
-            padding-top: 5rem; /* Espacio para que el título no choque con el logo */
+            padding-top: 5rem;
         }
         
-        /* Modificaciones del Logo */
         .logo-urn {
             position: absolute;
             top: 30px;
             left: 40px;
             max-width: 140px;
-            /* Esta propiedad asegura que cualquier borde blanco que haya quedado en el PNG se fusione perfectamente con el fondo */
             mix-blend-mode: multiply; 
         }
 
@@ -237,7 +237,10 @@ html_content = """<!DOCTYPE html>
             width: 100%;
         }
 
-        /* Responsive */
+
+        /* ====================================================
+           REGLAS INTACTAS PARA CELULAR (NO SE TOCÓ NADA)
+           ==================================================== */
         @media screen and (max-width: 768px) {
             .features-grid { grid-template-columns: 1fr; }
             .timeline::after { left: 31px; }
@@ -247,7 +250,6 @@ html_content = """<!DOCTYPE html>
             .section { padding: 120px 15px 20px; }
             .slogan { font-size: 1.3rem; padding: 1rem; }
             
-            /* Ajuste del logo para pantallas pequeñas */
             .logo-urn {
                 position: relative;
                 top: 0;
@@ -257,6 +259,114 @@ html_content = """<!DOCTYPE html>
             }
             .hero-section {
                 padding-top: 2rem;
+            }
+        }
+
+
+        /* ====================================================
+           MEJORAS ESTÉTICAS EXCLUSIVAS PARA PC (Desktop)
+           ==================================================== */
+        @media screen and (min-width: 769px) {
+            /* Menú de navegación flotante tipo "píldora" */
+            nav {
+                top: 20px;
+                width: max-content;
+                border-radius: 50px;
+                padding: 1rem 2.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+                background: rgba(255, 255, 255, 0.85);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+            }
+            
+            nav a {
+                margin: 0 20px;
+                font-size: 1rem;
+                position: relative;
+            }
+
+            /* Efecto de subrayado animado en el menú */
+            nav a::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -4px;
+                left: 0;
+                background-color: var(--urn-purple);
+                transition: width 0.3s ease;
+            }
+
+            nav a:hover::after {
+                width: 100%;
+            }
+
+            /* Contenedores de sección más amplios y elegantes */
+            .section-content {
+                max-width: 1050px; /* Más ancho para aprovechar la pantalla */
+                padding: 4rem 5rem;
+                border-radius: 24px;
+                box-shadow: 0 20px 50px rgba(42, 115, 113, 0.08);
+                transition: box-shadow 0.4s ease;
+            }
+
+            .section-content:hover {
+                box-shadow: 0 25px 60px rgba(42, 115, 113, 0.12);
+            }
+
+            /* Tipografía más grande y espaciada */
+            .hero-section {
+                padding-top: 6rem;
+            }
+            
+            .title-dark {
+                font-size: 4rem !important;
+                letter-spacing: -1px;
+            }
+            
+            .hero-section h3 {
+                font-size: 1.8rem;
+                margin-top: 0.5rem;
+            }
+
+            .slogan {
+                font-size: 2.2rem;
+                padding: 2rem 4rem;
+                margin: 3.5rem 0;
+            }
+
+            /* Efecto 3D (Hover) en las Tarjetas de Características */
+            .feature-card {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            
+            .feature-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 25px rgba(0,0,0,0.06);
+            }
+
+            /* Ajuste del logo para la nueva amplitud de la tarjeta */
+            .logo-urn {
+                top: 40px;
+                left: 50px;
+                max-width: 160px;
+            }
+            
+            /* Efecto interactivo en la línea de tiempo */
+            .timeline-content {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .timeline-content:hover {
+                transform: scale(1.03);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+                border-color: var(--lumina-light);
+                z-index: 2;
+            }
+            
+            /* Video más grande */
+            .video-container {
+                max-width: 850px;
             }
         }
     </style>
@@ -274,7 +384,6 @@ html_content = """<!DOCTYPE html>
     <!-- Sección 1: Identidad -->
     <section id="inicio" class="section">
         <div class="section-content hero-section">
-            <!-- Logo actualizado con extensión .png -->
             <img src="logo-universidad.png" alt="Logo URN" class="logo-urn">
             
             <h1 class="title-dark" style="font-size: 2.8rem; margin-bottom: 0;">Proyecto Lumina</h1>
@@ -385,3 +494,10 @@ html_content = """<!DOCTYPE html>
             </div>
         </div>
     </section>
+
+    <div class="footer">
+        © 2026 Lumina S.A.S | Universidad Campus Cd. Juárez
+    </div>
+
+</body>
+</html>
