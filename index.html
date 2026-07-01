@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+html_content = """<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto Lumina - Presentación</title>
     <style>
-        /* Paleta de colores basada en tu presentación */
+        /* Paleta de colores institucionales - Lumina S.A.S */
         :root {
-            --urn-purple: #6B4385;
-            --lumina-blue: #93C6C9;
-            --lumina-yellow: #FDE07A;
+            --urn-purple: #5c3b6e;
+            --lumina-teal: #2a7371; 
+            --lumina-light: #C8EAEB;
+            --lumina-yellow: #FFF5C2;
+            --text-dark: #333333;
             --bg-color: #F8FBFB;
-            --text-dark: #2C3E50;
         }
 
         * {
@@ -19,155 +20,381 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navegación sutil */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            backdrop-filter: blur(5px);
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--lumina-teal);
+            text-decoration: none;
+            margin: 5px 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--urn-purple);
+        }
+
+        /* Contenedor principal estilo "páginas" */
+        .section {
+            min-height: 100vh;
+            padding: 100px 20px 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            padding: 1.5rem;
-            /* Degradado suave de fondo */
-            background-image: linear-gradient(135deg, #ffffff 0%, #eef5f5 100%);
         }
 
-        /* Animación de entrada */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .container {
-            max-width: 800px;
-            width: 100%;
+        .section-content {
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 15px 35px rgba(107, 67, 133, 0.15);
-            overflow: hidden;
-            animation: fadeInUp 0.8s ease-out;
-            border-top: 6px solid var(--lumina-blue);
-        }
-
-        .decorative-pattern {
-            height: 15px;
-            background-color: var(--lumina-blue);
-            opacity: 0.7;
-            /* Patrón sutil emulando las hojas de tu diseño */
-            background-image: radial-gradient(white 2px, transparent 2px);
-            background-size: 12px 12px;
-        }
-
-        .header {
-            padding: 2.5rem 2rem 1.5rem;
-            text-align: center;
+            max-width: 900px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(42, 115, 113, 0.08);
+            padding: 3rem 2rem;
             position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+            margin-bottom: 2rem;
         }
 
-        .header::before {
+        .section-content::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--lumina-yellow), var(--lumina-blue), var(--urn-purple));
+            height: 6px;
+            background: linear-gradient(90deg, var(--lumina-yellow), var(--lumina-light), var(--lumina-teal));
         }
 
-        .title {
-            font-size: 2.2rem;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Títulos */
+        h1, h2, h3 {
+            color: var(--lumina-teal);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .title-dark {
+            color: var(--text-dark);
+        }
+
+        /* --- SECCIÓN 1: IDENTIDAD --- */
+        .hero-section {
+            text-align: center;
+            padding-top: 5rem; /* Espacio para que el título no choque con el logo */
+        }
+        
+        /* Modificaciones del Logo */
+        .logo-urn {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            max-width: 140px;
+            /* Esta propiedad asegura que cualquier borde blanco que haya quedado en el PNG se fusione perfectamente con el fondo */
+            mix-blend-mode: multiply; 
+        }
+
+        .slogan {
+            font-size: 1.8rem;
+            color: var(--lumina-teal);
+            font-style: italic;
+            font-weight: bold;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--lumina-light);
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        /* --- SECCIÓN 2: CARACTERÍSTICAS --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .feature-card {
+            background: var(--bg-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 5px solid var(--lumina-teal);
+            margin-bottom: 1rem;
+            height: 100%;
+        }
+        .feature-card.yellow-accent {
+            border-left-color: var(--lumina-yellow);
+        }
+        .feature-card h4 {
             color: var(--urn-purple);
             margin-bottom: 0.5rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .subtitle {
-            color: #7F8C8D;
-            font-size: 1.1rem;
-            font-style: italic;
-        }
-
-        .video-section {
-            padding: 0 2rem 2.5rem;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            gap: 8px;
         }
 
+        /* --- SECCIÓN 3: HISTORIA --- */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--lumina-light);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-item.left { left: 0; }
+        .timeline-item.right { left: 50%; }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--lumina-teal);
+            border: 4px solid var(--lumina-yellow);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-item.right::after { left: -10px; }
+        .timeline-content {
+            padding: 1.5rem;
+            background: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: var(--urn-purple);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- SECCIÓN 4: VIDEO --- */
         .video-container {
             width: 100%;
-            max-width: 640px;
+            max-width: 700px;
+            margin: 0 auto;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            background-color: #000;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-top: 1rem;
-        }
-
-        /* Efecto al pasar el cursor sobre el video */
-        .video-container:hover {
-            transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            background-color: #000;
         }
-
         video {
             width: 100%;
-            height: auto;
             display: block;
         }
 
-        .description {
-            margin-top: 1.5rem;
-            text-align: center;
-            line-height: 1.6;
-            color: #555;
-            font-size: 1.05rem;
-            max-width: 600px;
-        }
-
+        /* Footer */
         .footer {
-            padding: 1.2rem;
-            text-align: center;
             background-color: var(--urn-purple);
             color: white;
+            text-align: center;
+            padding: 1.5rem;
             font-size: 0.9rem;
-            letter-spacing: 0.5px;
+            margin-top: auto;
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .features-grid { grid-template-columns: 1fr; }
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item.right { left: 0; }
+            .timeline-item::after { left: 21px; }
+            .section { padding: 120px 15px 20px; }
+            .slogan { font-size: 1.3rem; padding: 1rem; }
+            
+            /* Ajuste del logo para pantallas pequeñas */
+            .logo-urn {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 1.5rem;
+                display: inline-block;
+            }
+            .hero-section {
+                padding-top: 2rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="decorative-pattern"></div>
-        <div class="header">
-            <h1 class="title">Proyecto Lumina</h1>
-            <p class="subtitle">Ensamblaje y Funcionamiento</p>
-        </div>
+    <!-- Navegación -->
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#caracteristicas">Características</a>
+        <a href="#historia">Historia</a>
+        <a href="#demostracion">Demostración</a>
+    </nav>
 
-        <div class="video-section">
+    <!-- Sección 1: Identidad -->
+    <section id="inicio" class="section">
+        <div class="section-content hero-section">
+            <!-- Logo actualizado con extensión .png -->
+            <img src="logo-universidad.png" alt="Logo URN" class="logo-urn">
+            
+            <h1 class="title-dark" style="font-size: 2.8rem; margin-bottom: 0;">Proyecto Lumina</h1>
+            <h3 style="color: #666;">Lumina S.A.S</h3>
+            
+            <div class="slogan">
+                "Ilumina tu espacio, protege tu planeta"
+            </div>
+            
+            <p style="font-size: 1.1rem; color: #555; max-width: 600px; margin: 0 auto;">
+                Presentación de Seminario Interdisciplinario para el Desarrollo de Proyectos.<br>
+                Generación 2022-2026.
+            </p>
+        </div>
+    </section>
+
+    <!-- Sección 2: Características -->
+    <section id="caracteristicas" class="section">
+        <div class="section-content">
+            <h2>Características del Producto</h2>
+            
+            <div class="features-grid">
+                <!-- Columna de Uso -->
+                <div>
+                    <h3 style="color: var(--urn-purple);">Características de Uso</h3>
+                    <div class="feature-card">
+                        <h4>🏃‍♂️ Sensor Inteligente</h4>
+                        <p>El producto incorpora un sensor de movimiento inteligente que enciende automáticamente la luz al detectar presencia y la apaga tras un periodo de inactividad, optimizando así el consumo energético.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>☀️ Energía Solar</h4>
+                        <p>Funciona exclusivamente con energía solar, eliminando la necesidad de conexión a la red eléctrica.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🏢 Diseño Estratégico</h4>
+                        <p>Diseñada para espacios de uso intermitente, proporciona mayor comodidad, ahorro de energía y promueve el uso responsable de tecnología sostenible.</p>
+                    </div>
+                </div>
+
+                <!-- Columna Generales -->
+                <div>
+                    <h3 style="color: var(--urn-purple);">Características Generales</h3>
+                    <div class="feature-card yellow-accent">
+                        <h4>💡 Iluminación LED</h4>
+                        <p>Lámpara LED alimentada por energía solar. Equipado con iluminación LED de bajo consumo.</p>
+                    </div>
+                    <div class="feature-card yellow-accent">
+                        <h4>🔋 Autonomía Prolongada</h4>
+                        <p>Aprovecha la energía renovable mediante un panel solar y una batería recargable, proporcionando hasta 12 horas de autonomía.</p>
+                    </div>
+                    <div class="feature-card yellow-accent">
+                        <h4>🌱 Diseño Ecológico</h4>
+                        <p>Su diseño ecológico garantiza una fácil instalación sin necesidad de conexión eléctrica.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección 3: Historia -->
+    <section id="historia" class="section">
+        <div class="section-content">
+            <h2>Antecedentes Históricos</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1839</div>
+                        <p><strong>Alexandre Edmond Becquerel</strong> descubre el efecto fotovoltaico, la base científica de la energía solar.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1876-1883</div>
+                        <p><strong>William Grylls Adams y Richard Evans Day</strong> demuestran que el selenio produce electricidad cuando se expone a la luz, confirmando así el fenómeno.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Siglo XX</div>
+                        <p>Se desarrollan los primeros paneles solares y se mejora la eficiencia de la conversión de energía.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Presente</div>
+                        <p>La iluminación con paneles solares se utiliza en hogares, parques, carreteras e industrias, destacándose como una alternativa sostenible, eficiente y de bajo mantenimiento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección 4: Video -->
+    <section id="demostracion" class="section">
+        <div class="section-content">
+            <h2>Demostración y Ensamblaje</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Conoce el proceso práctico detrás de nuestro sistema de iluminación.</p>
+            
             <div class="video-container">
-                <video controls autoplay muted playsinline>
-                    <source src="video-lumina.mp4" type="video/mp4">
+                <video controls playsinline>
+                    <source src="demostracion-lumina.mp4" type="video/mp4">
                     Tu navegador no soporta la reproducción de este video.
                 </video>
             </div>
-            <p class="description">
-                Conoce el proceso práctico detrás de nuestro sistema de iluminación. 
-                Desarrollo interdisciplinario con enfoque en sustentabilidad y eficiencia.
-            </p>
         </div>
+    </section>
 
+    <div class="footer">
+        © 2026 Lumina S.A.S | Universidad Campus Cd. Juárez
     </div>
 
 </body>
 </html>
+"""
+
+with open('/mnt/data/index.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+    
+print("File generated successfully: [file-tag: index-html-lumina]")
